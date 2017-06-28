@@ -54,12 +54,20 @@ index["75"]="80";   orders+=( "75" )
 index["80"]="100";  orders+=( "80" )
 index["100"]="100"; orders+=( "100" )
 
+lastRoundTemp="0"
+
 currentTempQuerier () {
     #originRes="$(nvidia-settings -q '[gpu:0]/GPUCoreTemp' | awk '{print $3}')"
     read originRes <<< $(nvidia-settings -q '[gpu:0]/GPUCoreTemp' | awk '/Attribute[[:space:]]/ { print $4 }')
     afterRes="${originRes//.}"
     echo "CurrentTemp: "$afterRes
-    interpolator $afterRes
+    if [ $lastRoundTemp -eq $afterRes ]; then
+        #echo "No Need To Call API"
+        return
+    else
+        lastRoundTemp=$afterRes
+        interpolator $afterRes
+    fi
 }
 
 interpolator() {
@@ -68,11 +76,11 @@ interpolator() {
     for i in "${!orders[@]}"
     do
         #echo "${orders[$i]}: ${index[${orders[$i]}]}"
-        if [ "$1" -eq ${orders[$i]} ]; then
+        if [ $1 -eq ${orders[$i]} ]; then
             calculatedSpeed=${index[${orders[$i]}]}
             setFanSpeed $calculatedSpeed
             break
-        elif [ "$1" -lt ${orders[$i]} ]; then
+        elif [ $1 -lt ${orders[$i]} ]; then
             #calculatedSpeed = fa + (fb-fa) * (x-a) / (b-a)
             fa=${index[${orders[($i-1)]}]}
             fbfa=$((${index[${orders[$i]}]} - ${index[${orders[($i-1)]}]}))
