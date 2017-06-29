@@ -1,3 +1,5 @@
+var MyGlobal = {};
+
 registerKeyboardHandler = function(callback) {
   var callback = callback;
   d3.select(window).on("keydown", callback);
@@ -5,6 +7,7 @@ registerKeyboardHandler = function(callback) {
 
 SimpleGraph = function(elemid, options) {
   var self = this;
+  MyGlobal.myChart = self;
   this.chart = document.getElementById(elemid);
   this.cx = this.chart.clientWidth;
   this.cy = this.chart.clientHeight;
@@ -44,6 +47,7 @@ SimpleGraph = function(elemid, options) {
   // drag y-axis logic
   this.downy = Math.NaN;
 
+
   this.dragged = this.selected = null;
 
   this.line = d3.svg.line()
@@ -52,29 +56,34 @@ SimpleGraph = function(elemid, options) {
 
   var xrange =  (this.options.xmax - this.options.xmin),
       yrange2 = (this.options.ymax - this.options.ymin) / 2,
-      yrange4 = yrange2 / 2,
-      datacount = this.size.width/30;
+      yrange4 = yrange2 / 2;
 
+  var mData;
+  $.ajax({
+     url: "../../shellscripts/index.csv",
+     async: false,
+     success: function (csvd) {
+         mData = $.csv.toArrays(csvd);
+      // console.log(data);
+     },
+     dataType: "text",
+     complete: function () {
+           // call a function on complete
+     }
+  });
 
+  var xarray = [];
+  var yarray = [];
+
+  for(var i  = 1; i < mData.length; ++i){
+       xarray.push(parseFloat(mData[i][0]));
+       yarray.push(parseFloat(mData[i][1]));
+  }
+  var datacount = xarray.length;
   this.points = d3.range(datacount).map(function(i) {
-    return { x: i * xrange / datacount, y: this.options.ymin + yrange4 + Math.random() * yrange2 };
+       return { x: xarray[i], y: yarray[i]};
   }, self);
-  /*
-  d3.csv("../../shellscripts/index.csv", function(index) {
-    //prices is an array of json objects containing the data in from the csv
-    //console.log("index:", index)
-    self.points = index.map(function(i) {
-        //each d is one line of the csv file represented as a json object
-        temperature = parseInt(i.temperature);
-        fanSpeed = parseInt(i.fanSpeed);
-        i.count = +i.count;
-        return {x: temperature, y:fanSpeed};
-    }, self);
 
-    console.log(self.points);
- });
-
-*/
 
 
   this.vis = d3.select(this.chart).append("svg")
@@ -396,3 +405,7 @@ SimpleGraph.prototype.yaxis_drag = function(d) {
     self.downy = self.y.invert(p[1]);
   }
 };
+
+var myFunction = () => {
+    console.log(MyGlobal.myChart.points);
+}
