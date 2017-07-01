@@ -4,10 +4,12 @@
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
     <title>Nvidia Fan Control App</title>
     <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+    <script type="text/javascript" src="execute.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/0.8.3/jquery.csv.js"></script>
     <script type="text/javascript" src='http://d3js.org/d3.v2.js'></script>
     <script type="text/javascript" src="simple-graph.js"></script>
+    <script type="text/javascript" src="applyButton.js"></script>
     <script>if (window.module) module = window.module;</script>
 
     <style type="text/css">
@@ -57,6 +59,7 @@
           "ylabel": "Fan Speed. %"
         });
     </script>
-    <button id="myButton" onclick="myFunction()">Click me</button>
+    <button id="myButton" onclick="onApplyClick()">Aplly</button>
+    <button id="myKill" onclick="onKillClick()">Kill</button>
   </body>
 </html>

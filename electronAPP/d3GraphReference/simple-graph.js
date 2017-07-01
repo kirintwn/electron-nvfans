@@ -405,7 +405,3 @@ SimpleGraph.prototype.yaxis_drag = function(d) {
     self.downy = self.y.invert(p[1]);
   }
 };
-
-var myFunction = () => {
-    console.log(MyGlobal.myChart.points);
-}
