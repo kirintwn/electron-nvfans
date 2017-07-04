@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <title>Nvidia Fan Control App</title>
+    <link rel="stylesheet" href="assets/css/graph.css">
+    <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src='http://d3js.org/d3.v2.js'></script>
+    <script type="text/javascript" src="assets/js/fansControl.js"></script>
+    <script type="text/javascript" src="assets/js/simple-graph.js"></script>
+    <script type="text/javascript" src="assets/js/buttonFunctions.js"></script>
+    <script>if (window.module) module = window.module;</script>
+  </head>
+  <body>
+    <span id="currentTemp">Temperature Now: --°C</span>
+    <span id="currentFans">Fan Speed Now: --%</span>
+
+    <div id="chart1" class="chart"></div>
+    <script type="text/javascript">
+      graph = new SimpleGraph("chart1", {
+          "xmax": 100, "xmin": 0,
+          "ymax": 100, "ymin": 0,
+          "xlabel": "Temperature.°C",
+          "ylabel": "Fan Speed. %"
+        });
+    </script>
+    <button id="applyAll" onclick="onApplyAllClick()">Apply</button>
+  </body>
+</html>

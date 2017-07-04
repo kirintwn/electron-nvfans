@@ -1,0 +1,45 @@
+body { font: 13px sans-serif; }
+rect { fill: #fff; }
+ul {
+  list-style-type: none;
+  margin: 0.5em 0em 0.5em 0em;
+  width: 100%; }
+ul li {
+    display: table-cell;
+    vertical-align: middle;
+    margin: 0em;
+    padding: 0em 1em; }
+div.tooltip {
+  position: absolute;
+  text-align: center;
+  width: 60px;
+  height: 28px;
+  padding: 2px;
+  font: 12px sans-serif;
+  background: lightsteelblue;
+  border: 0px;
+  border-radius: 8px;
+  pointer-events: none;
+}
+.axis { font-size: 1.5em; }
+.chart {
+  background-color: #FFFFFF;
+  width: 500px;
+  height: 500px; }
+circle, .line {
+  fill: none;
+  stroke: steelblue;
+  stroke-width: 2px; }
+circle {
+  fill: white;
+  fill-opacity: 0.2;
+  cursor: move; }
+  circle.selected {
+    fill: #666666;
+    stroke: #666666; }
+  circle:hover {
+    fill: #666666;
+    stroke: #666666; }
+  circle.selected:hover {
+    fill: #666666;
+    stroke: #666666; }

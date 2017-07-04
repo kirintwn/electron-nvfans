@@ -58,26 +58,12 @@ SimpleGraph = function(elemid, options) {
       yrange2 = (this.options.ymax - this.options.ymin) / 2,
       yrange4 = yrange2 / 2;
 
-  var mData;
-  $.ajax({
-     url: "../../shellscripts/index.csv",
-     async: false,
-     success: function (csvd) {
-         mData = $.csv.toArrays(csvd);
-      // console.log(data);
-     },
-     dataType: "text",
-     complete: function () {
-           // call a function on complete
-     }
-  });
-
   var xarray = [];
   var yarray = [];
 
-  for(var i  = 1; i < mData.length; ++i){
-       xarray.push(parseFloat(mData[i][0]));
-       yarray.push(parseFloat(mData[i][1]));
+  for(var i = 0 ; i < customSpeedData.length ; i++){
+       xarray.push(customSpeedData[i].temperature);
+       yarray.push(customSpeedData[i].speed);
   }
   var datacount = xarray.length;
   this.points = d3.range(datacount).map(function(i) {
