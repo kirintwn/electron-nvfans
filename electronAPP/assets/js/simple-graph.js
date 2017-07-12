@@ -57,14 +57,14 @@ SimpleGraph = function(elemid, options) {
   var xrange =  (this.options.xmax - this.options.xmin),
       yrange2 = (this.options.ymax - this.options.ymin) / 2,
       yrange4 = yrange2 / 2;
-
-  var xarray = [];
-  var yarray = [];
+  var xarray = [/*0,25,45,60,70,80,100*/];
+  var yarray = [/*0,20,30,45,60,80,100*/];
 
   for(var i = 0 ; i < customSpeedData.length ; i++){
        xarray.push(customSpeedData[i].temperature);
        yarray.push(customSpeedData[i].speed);
   }
+
   var datacount = xarray.length;
   this.points = d3.range(datacount).map(function(i) {
        return { x: xarray[i], y: yarray[i]};

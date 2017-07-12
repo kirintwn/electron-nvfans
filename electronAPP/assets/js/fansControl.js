@@ -1,8 +1,9 @@
-const spawn = require('child_process').spawn;
-const fs = require('fs');
-const path = require('path');
+const spawn = require("child_process").spawn;
+const fs = require("fs");
+const path = require("path");
 
-var myDataPath = path.resolve(__dirname, "assets/data/customSpeedData.json");
+var myDataPath = path.resolve(__dirname, 'assets/data/customSpeedData.json');
+var myToggleDataPath = path.resolve(__dirname , 'assets/data/customToggleData.json');
 
 var fetchCustomSpeedData = () => {
     try {
@@ -14,7 +15,18 @@ var fetchCustomSpeedData = () => {
         return [];
     }
 }
+var fetchCustomToggleData = () => {
+    try {
+        var customToggleData = fs.readFileSync(myToggleDataPath);
+        return JSON.parse(customToggleData);
+    }
+    catch(e) {
+        console.log(e);
+        return [];
+    }
+}
 var customSpeedData = fetchCustomSpeedData();
+var customToggleData = fetchCustomToggleData();
 var GPUinfo = {
     totalQuantity: 0,
     GPUobject:[/*{ index: 0,
@@ -23,7 +35,7 @@ var GPUinfo = {
         fanSpeed: '50',
         toggleCustom: false,
         customSpeed: -1 }*/]
-};
+}
 
 var executeCMD = (cmd) => {
     return new Promise((resolve , reject) => {
@@ -33,7 +45,7 @@ var executeCMD = (cmd) => {
             reject(e);
         };
 
-        var res="";
+        var res = "";
 
         cmdChild.stdout.on('data', (data) => {
             res += data.toString();
@@ -73,7 +85,7 @@ var interpolator = (tempNow) => {
         return customSpeedData[customSpeedData.length-1].speed;
     }
     for(var i = 0 ; i < customSpeedData.length ; i++) {
-        if(tempNow === customSpeedData[i].temperature) {
+        if (tempNow === customSpeedData[i].temperature) {
             return customSpeedData[i].speed;
         }
         else if(tempNow < customSpeedData[i].temperature) {
@@ -99,6 +111,9 @@ var updateCustomSpeedByIndex = (gpuNum) => {
         .catch((e) => {
             console.log(e);
         })
+    }
+    else {
+        GPUinfo.GPUobject[gpuNum].customSpeed = -1;
     }
 }
 var updateGPUstate = (mSecond) => {
@@ -127,14 +142,40 @@ var toggleCustomByIndex = (gpuNum , value) => {
 var toggleAllCustom = (value) => {
     for (var i = 0; i < GPUinfo.totalQuantity; i++) {
         toggleCustomByIndex(i , value);
+        customToggleData[i] = value;
+    }
+    saveCustomToggleData(customToggleData);
+}
+
+var setToggleCustomByData = () => {
+    if(customToggleData.length != GPUinfo.totalQuantity) {
+        var myCustomToggleData = [];
+        for (var i = 0; i < GPUinfo.totalQuantity; i++) {
+            myCustomToggleData.push(true);
+        }
+        saveCustomToggleData(myCustomToggleData);
+        toggleAllCustom(true);
+    }
+    else {
+        for (var i = 0; i < GPUinfo.totalQuantity; i++) {
+            toggleCustomByIndex(i , customToggleData[i]);
+        }
     }
 }
 
-var setCustomSpeedData = (myCustomSpeedData) => {
+var saveCustomToggleData = (myCustomToggleData) => {
+    customToggleData = myCustomToggleData;
+    fs.writeFile(myToggleDataPath , JSON.stringify(myCustomToggleData), (err) => {
+        if (err) throw err;
+        console.log("toggle data saved");
+    })
+}
+
+var saveCustomSpeedData = (myCustomSpeedData) => {
     customSpeedData = myCustomSpeedData;
     fs.writeFile(myDataPath , JSON.stringify(myCustomSpeedData), (err) => {
         if (err) throw err;
-        console.log("data saved");
+        console.log("speed data saved");
     });
 }
 
@@ -159,7 +200,7 @@ var saveGPUinfo = (res) => {
             if(words[0].charAt(0) === "[") {
                 var oneGPUobject = {
                     index: parseInt(words[0].slice(1, -1)),
-                    name: line.match(/\(([^)]+)\)/)[1],
+                    name: (line.match(/\(([^)]+)\)/)[1]).slice(8),
                     temperature: 0,
                     fanSpeed: 0,
                     toggleCustom: false,
@@ -176,6 +217,10 @@ var initGPUinfo = () => {
     executeCMD(cmd)
     .then(saveGPUinfo)
     .then((GPUinfo) => {
+        var gpu = [];
+        for (var i = 0; i < GPUinfo.totalQuantity; i++) {
+            gpu[i] = new GPU(i);
+        }
     })
     .catch((e) => {
         console.log(e);
@@ -185,6 +230,6 @@ var initGPUinfo = () => {
 initGPUinfo();
 updateGPUstate(2500);
 setTimeout(() => {
-    toggleAllCustom(true);
+    setToggleCustomByData();
     logger(5000);
 },1000);

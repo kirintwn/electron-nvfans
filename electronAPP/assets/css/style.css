@@ -1,0 +1,110 @@
+* {
+  //border: solid 1px black;
+  text-align: center;
+  vertical-align: top;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+
+.container {
+  width: 800px;
+  height: 600px;
+}
+.container .partLeft {
+  width: 450px;
+  height: 600px;
+  margin-left: 0px;
+  margin-right: auto;
+}
+.container .partLeft .chart {
+  width: 400px;
+  height: 450px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 40px;
+}
+.container .partLeft .button {
+  width: 100px;
+  height: 30px;
+  margin-top: 30px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.container .partRight {
+  width: 350px;
+  height: 600px;
+  margin-left: 450px;
+  margin-top: -602px;
+}
+.container .partRight .subPartRight {
+  height: 580px;
+  width: 330px;
+  display: table-cell;
+  vertical-align: middle;
+  position: relative;
+  text-align: center;
+}
+.container .partRight .subPartRight .gpuContent {
+  height: 95px;
+  width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+  margin-bottom: auto;
+  margin-top: auto;
+}
+.container .partRight .subPartRight .gpuContent .icon {
+  height: 95px;
+  width: 95px;
+  display: inline-block;
+  position: relative;
+  margin: auto;
+}
+
+.GPUname, .svg, .svgOuter{
+  width: 95px;
+  height: 95px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.GPUname {
+  line-height: 13px;
+  height: 20px;
+  width 100%;
+  top: 40px;
+  font-size: 15px;
+  text-align: center;
+  color: #3da08d;
+  opacity: 0.8
+}
+
+.container .partRight .subPartRight .gpuContent .temp {
+  height: 95px;
+  width: 45px;
+  margin-left: 20px;
+  margin-right: 0px;
+  text-align: center;
+  line-height: 95px;
+  font-size: 30px;
+  display: inline-block;
+}
+.container .partRight .subPartRight .gpuContent .fanSpeed {
+  height: 95px;
+  width: 45px;
+  margin-left: 0px;
+  margin-right: 35px;
+  line-height: 95px;
+  font-size: 30px;
+  display: inline-block;
+}
+.container .partRight .subPartRight .gpuContent .checkbox {
+  height: 95px;
+  width: 35px;
+  display: inline-block;
+}

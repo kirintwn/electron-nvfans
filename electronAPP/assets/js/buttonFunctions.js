@@ -10,5 +10,6 @@ var onApplyAllClick = () => {
         myCustomSpeedData.push(singleData);
     }
 
-    setCustomSpeedData(myCustomSpeedData);
+    saveCustomSpeedData(myCustomSpeedData);
+    toggleAllCustom(true);
 }

@@ -9,23 +9,14 @@ ul li {
     vertical-align: middle;
     margin: 0em;
     padding: 0em 1em; }
-div.tooltip {
-  position: absolute;
-  text-align: center;
-  width: 60px;
-  height: 28px;
-  padding: 2px;
-  font: 12px sans-serif;
-  background: lightsteelblue;
-  border: 0px;
-  border-radius: 8px;
-  pointer-events: none;
-}
 .axis { font-size: 1.5em; }
-.chart {
+#chart1 {
   background-color: #FFFFFF;
-  width: 500px;
-  height: 500px; }
+  width: 400px;
+  height: 450px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 40px; }
 circle, .line {
   fill: none;
   stroke: steelblue;
