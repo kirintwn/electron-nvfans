@@ -40,7 +40,7 @@ var GPU  = function (index) {
 GPU.prototype.runInner = function() {
     var canvasSize = 95,
         centre = canvasSize/2,
-        radius = canvasSize*0.8/2,
+        radius = canvasSize*0.79/2,
         s = Snap("#"+this.svgID),
         path = "",
         arc = s.path(path),
@@ -64,14 +64,14 @@ GPU.prototype.runInner = function() {
         arc.attr({
           stroke: '#3da08d',
           fill: 'none',
-          strokeWidth: 5
+          strokeWidth: 7
         });
     }, 500, mina.easeinout);
 };
 GPU.prototype.runOuter = function() {
     var canvasSize = 95,
         centre = canvasSize/2,
-        radiusOuter = canvasSize*0.9/2,
+        radiusOuter = canvasSize*0.92/2,
         sOuter = Snap("#"+this.svgOuterID),
         pathOuter = "",
         arcOuter = sOuter.path(pathOuter),
@@ -97,7 +97,7 @@ GPU.prototype.runOuter = function() {
         arcOuter.attr({
           stroke: '#3da0ff',
           fill: 'none',
-          strokeWidth: 5
+          strokeWidth: 7
         });
     }, 500, mina.easeinout);
 }
@@ -126,8 +126,8 @@ GPU.prototype.updateInfo = function() {
         self.runInner();
         self.runOuter();
         document.getElementById(self.GPUnameID).innerHTML = GPUinfo.GPUobject[self.index].name;
-        document.getElementById(self.tempID).innerHTML = GPUinfo.GPUobject[self.index].temperature;
-        document.getElementById(self.fanSpeedID).innerHTML = GPUinfo.GPUobject[self.index].fanSpeed;
+        document.getElementById(self.tempID).innerHTML = GPUinfo.GPUobject[self.index].temperature + "°C";
+        document.getElementById(self.fanSpeedID).innerHTML = GPUinfo.GPUobject[self.index].fanSpeed + "%";
         document.getElementById(self.checkboxID).checked = GPUinfo.GPUobject[self.index].toggleCustom;
     }, 3000);
 }

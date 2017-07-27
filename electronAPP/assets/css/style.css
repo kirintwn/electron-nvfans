@@ -2,14 +2,18 @@
   //border: solid 1px black;
   text-align: center;
   vertical-align: top;
+  font-family:  sans-serif;
+  //
 }
 
 html, body {
   margin: 0;
   padding: 0;
-  height: 100%;
-  width: 100%;
+  width: 800px;
+  height: 600px;
   position: relative;
+  background-color: #b7ccbf;
+  overflow:hidden;
 }
 
 .container {
@@ -30,11 +34,30 @@ html, body {
   margin-top: 40px;
 }
 .container .partLeft .button {
-  width: 100px;
-  height: 30px;
+  //width: 100px;
+  //height: 30px;
   margin-top: 30px;
-  margin-left: auto;
-  margin-right: auto;
+  //margin-left: auto;
+  //margin-right: auto;
+  padding: 15px 25px;
+  font-size: 15px;
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+  color: #004d00;
+  font-weight: bold;
+  background-color: #4CAF50;
+  border: none;
+  border-radius: 15px;
+  //box-shadow: 0 9px #999;
+}
+.container .partLeft .button:hover {
+  background-color: #3e8e41;
+}
+.container .partLeft .button:active {
+  background-color: #3e8e41;
+  //box-shadow: 0px  2px 2px #666;
+  transform: translateY(4px);
 }
 .container .partRight {
   width: 350px;
@@ -73,6 +96,7 @@ html, body {
   top: 0;
   left: 0;
 }
+
 .GPUname {
   line-height: 13px;
   height: 20px;
@@ -80,31 +104,32 @@ html, body {
   top: 40px;
   font-size: 15px;
   text-align: center;
-  color: #3da08d;
-  opacity: 0.8
+  color: #004d00;
+  font-weight: bold;
+  //opacity: 0.8
 }
 
 .container .partRight .subPartRight .gpuContent .temp {
   height: 95px;
   width: 45px;
   margin-left: 20px;
-  margin-right: 0px;
+  margin-right: 10px;
   text-align: center;
-  line-height: 95px;
-  font-size: 30px;
+  line-height: 100px;
+  font-size: 20px;
   display: inline-block;
 }
 .container .partRight .subPartRight .gpuContent .fanSpeed {
   height: 95px;
   width: 45px;
-  margin-left: 0px;
+  margin-left: 10px;
   margin-right: 35px;
-  line-height: 95px;
-  font-size: 30px;
+  line-height: 100px;
+  font-size: 20px;
   display: inline-block;
 }
 .container .partRight .subPartRight .gpuContent .checkbox {
   height: 95px;
-  width: 35px;
+  width: 20px;
   display: inline-block;
 }

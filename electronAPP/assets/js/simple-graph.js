@@ -81,7 +81,7 @@ SimpleGraph = function(elemid, options) {
   this.plot = this.vis.append("rect")
       .attr("width", this.size.width)
       .attr("height", this.size.height)
-      .style("fill", "#EEEEEE")
+      .style("fill", "#AAAAAA")
       .attr("pointer-events", "all")
       .on("mousedown.drag", self.plot_drag())
       .on("touchstart.drag", self.plot_drag());
@@ -315,6 +315,7 @@ SimpleGraph.prototype.redraw = function() {
     gx.select("text")
         .text(fx);
 
+
     var gxe = gx.enter().insert("g", "a")
         .attr("class", "x")
         .attr("transform", tx);
@@ -332,9 +333,9 @@ SimpleGraph.prototype.redraw = function() {
         .text(fx)
         .style("cursor", "ew-resize")
         .on("mouseover", function(d) { d3.select(this).style("font-weight", "bold");})
-        .on("mouseout",  function(d) { d3.select(this).style("font-weight", "normal");})
-        .on("mousedown.drag",  self.xaxis_drag())
-        .on("touchstart.drag", self.xaxis_drag());
+        .on("mouseout",  function(d) { d3.select(this).style("font-weight", "normal");});
+        //.on("mousedown.drag",  self.xaxis_drag())
+        //.on("touchstart.drag", self.xaxis_drag());
 
     gx.exit().remove();
 
@@ -364,9 +365,9 @@ SimpleGraph.prototype.redraw = function() {
         .text(fy)
         .style("cursor", "ns-resize")
         .on("mouseover", function(d) { d3.select(this).style("font-weight", "bold");})
-        .on("mouseout",  function(d) { d3.select(this).style("font-weight", "normal");})
-        .on("mousedown.drag",  self.yaxis_drag())
-        .on("touchstart.drag", self.yaxis_drag());
+        .on("mouseout",  function(d) { d3.select(this).style("font-weight", "normal");});
+        //.on("mousedown.drag",  self.yaxis_drag())
+        //.on("touchstart.drag", self.yaxis_drag());
 
     gy.exit().remove();
     //self.plot.call(d3.behavior.zoom().x(self.x).y(self.y).on("zoom", self.redraw()));

@@ -1,5 +1,5 @@
 body { font: 13px sans-serif; }
-rect { fill: #fff; }
+rect { fill: #666; }
 ul {
   list-style-type: none;
   margin: 0.5em 0em 0.5em 0em;
@@ -11,7 +11,8 @@ ul li {
     padding: 0em 1em; }
 .axis { font-size: 1.5em; }
 #chart1 {
-  background-color: #FFFFFF;
+  //background-color: #efefef;
+  font-weight: normal;
   width: 400px;
   height: 450px;
   margin-left: auto;
@@ -19,7 +20,7 @@ ul li {
   margin-top: 40px; }
 circle, .line {
   fill: none;
-  stroke: steelblue;
+  stroke: #004d00;
   stroke-width: 2px; }
 circle {
   fill: white;

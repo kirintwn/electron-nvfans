@@ -1,7 +1,8 @@
 {
-  "name": "NVubuntu",
+  "name": "NvFans",
   "version": "0.1.0",
   "main": "main.js",
+  "electron": "^1.6.11",
   "dependencies": {
     "jquery": "^3.2.1"
   }
