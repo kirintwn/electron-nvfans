@@ -62,7 +62,7 @@ GPU.prototype.runInner = function() {
 
         arc = s.path(path);
         arc.attr({
-          stroke: '#3da08d',
+          stroke: '#00C853',
           fill: 'none',
           strokeWidth: 7
         });
@@ -95,7 +95,7 @@ GPU.prototype.runOuter = function() {
 
         arcOuter = sOuter.path(pathOuter);
         arcOuter.attr({
-          stroke: '#3da0ff',
+          stroke: '#1565c0',
           fill: 'none',
           strokeWidth: 7
         });

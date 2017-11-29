@@ -12,7 +12,7 @@ html, body {
   width: 800px;
   height: 600px;
   position: relative;
-  background-color: #b7ccbf;
+  background-color: #E0E0E0;
   overflow:hidden;
 }
 
@@ -44,18 +44,18 @@ html, body {
   text-align: center;
   cursor: pointer;
   outline: none;
-  color: #004d00;
+  color: #ffffff;
   font-weight: bold;
-  background-color: #4CAF50;
+  background-color: #039be5;
   border: none;
   border-radius: 15px;
   //box-shadow: 0 9px #999;
 }
 .container .partLeft .button:hover {
-  background-color: #3e8e41;
+  background-color: #005ecb;
 }
 .container .partLeft .button:active {
-  background-color: #3e8e41;
+  background-color: #005ecb;
   //box-shadow: 0px  2px 2px #666;
   transform: translateY(4px);
 }
@@ -104,7 +104,7 @@ html, body {
   top: 40px;
   font-size: 15px;
   text-align: center;
-  color: #004d00;
+  color: #000000;
   font-weight: bold;
   //opacity: 0.8
 }
